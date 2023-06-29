@@ -1,6 +1,6 @@
 import os
 from fpdf import FPDF
-
+import sys
 
 def convert_do_to_pdf(do_file_path, pdf):
     # Read the contents of the .do file
@@ -37,9 +37,16 @@ def process_folder(folder_path, output_pdf_path):
     # Save the PDF file
     pdf.output(output_pdf_path)
 
-# Provide the folder path and output PDF path here
-folder_path = 'dofiles'
-output_pdf_path = 'MGA_dofiles.pdf'
 
-# Call the function to process the folder
-process_folder(folder_path, output_pdf_path)
+if __name__ == '__main__':
+    # Check if the required arguments are provided
+    if len(sys.argv) < 3:
+        print("Usage: python script_name.py folder_path output_pdf_path")
+        sys.exit(1)
+
+    # Get the folder path and output PDF path from command-line arguments
+    folder_path = sys.argv[1]
+    output_pdf_path = sys.argv[2]
+
+    # Call the function to process the folder
+    process_folder(folder_path, output_pdf_path)

@@ -1,10 +1,11 @@
 import os
+import sys
+from pathlib import Path
 import pdfkit
+import PyPDF2
 from pygments import highlight
 from pygments.lexers import get_lexer_by_name
 from pygments.formatters import HtmlFormatter
-import PyPDF2
-from pathlib import Path
 
 def convert_do_to_pdf(do_file_path, output_pdf_path):
     # Read the contents of the .do file
@@ -68,9 +69,15 @@ def process_folder(folder_path, output_pdf_path):
     # Merge all the PDF files into a single PDF using pdfkit
     merge_pdfs(pdf_files_paths, output_pdf_path)
 
-# Provide the folder path and output PDF path here
-folder_path = 'dofiles'
-output_pdf_path = 'MGA_dofiles.pdf'
+if __name__ == '__main__':
+    # Check if the required arguments are provided
+    if len(sys.argv) < 3:
+        print("Usage: python script_name.py folder_path output_pdf_path")
+        sys.exit(1)
 
-# Call the function to process the folder
-process_folder(folder_path, output_pdf_path)
+    # Get the folder path and output PDF path from command-line arguments
+    folder_path = sys.argv[1]
+    output_pdf_path = sys.argv[2]
+
+    # Call the function to process the folder
+    process_folder(folder_path, output_pdf_path)
