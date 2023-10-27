@@ -4,6 +4,11 @@ This script facilitates the conversion of various script files into a consolidat
 
 Please note that `convert_scripts_to_pdf.py` is designed for Python 3.8 or lower, as the `FPDF` package is not currently actively maintained. The highlighting version (`convert_scripts_to_pdf_highlight.py`) has been tested on Python 3.8, but it might be compatible with higher versions as well.
 
+## Motivation
+When I worked in government, I often had to present evidence of my work, which was usually done in the form of Python, Stata, and R scripts. As auditors often don't know how to read code, I had to convert my scripts into PDF files. This was a tedious process, as I had to copy and paste the code into a txt file, then convert it into a PDF file. This script automates this process.
+
+This project was built using ChatGPT and Copilot.
+
 ## Usage
 
 ### Without Highlighting:
@@ -16,12 +21,14 @@ python convert_scripts_to_pdf.py <input_folder> <output_file> --ext <extension> 
 python convert_scripts_to_pdf_highlight.py <input_folder> <output_file> --ext <extension> --lang <language>
 ```
 
-## Parameters
+### Parameters
 
 - `<input_folder>`: The path to the folder containing the script files.
 - `<output_file>`: The desired path for the output PDF file.
 - `--ext <extension>`: Optional. Specifies the file extension to search for (default is "py").
 - `--lang <language>`: Optional. Specifies the language to use for syntax highlighting (default is "python").
+
+The options for --ext and --lang are the same as those available in `pygments`. For a list of supported languages, see [here](https://pygments.org/languages/).
 
 ## Examples
 
@@ -32,21 +39,21 @@ For R scripts:
 python convert_scripts_to_pdf.py examples examples/example_r.pdf --ext r
 ```
 
-Produced PDF file: [examples/example_r.pdf](examples/example_r.pdf)
+--> Produced PDF file: [examples/example_r.pdf](examples/example_r.pdf)
 
 For Stata do files:
 ```bash
 python convert_scripts_to_pdf.py examples examples/example_do.pdf --ext do
 ```
 
-Produced PDF file: [examples/example_do.pdf](examples/example_do.pdf)
+--> Produced PDF file: [examples/example_do.pdf](examples/example_do.pdf)
 
 For Python scripts:
 ```bash
 python convert_scripts_to_pdf.py . examples/example_py.pdf --ext py
 ```
 
-Produced PDF file: [examples/example_py.pdf](examples/example_py.pdf)
+--> Produced PDF file: [examples/example_py.pdf](examples/example_py.pdf)
 
 ### With Highlighting:
 For R scripts:
@@ -54,7 +61,7 @@ For R scripts:
 python convert_scripts_to_pdf_highlight.py examples examples/example_highlight_r.pdf --ext r --lang r
 ```
 
-Produced PDF file: [examples/example_highlight_r.pdf](examples/example_highlight_r.pdf)
+--> Produced PDF file: [examples/example_highlight_r.pdf](examples/example_highlight_r.pdf)
 
 For Stata do files:
 
@@ -62,12 +69,12 @@ For Stata do files:
 python convert_scripts_to_pdf_highlight.py examples examples/example_highlight_do.pdf --ext do --lang stata
 ```
 
-Produced PDF file: [examples/example_highlight_do.pdf](examples/example_highlight_do.pdf)
+--> Produced PDF file: [examples/example_highlight_do.pdf](examples/example_highlight_do.pdf)
 
 For Python scripts:
 ```bash
 python convert_scripts_to_pdf_highlight.py . examples/example_highlight_py.pdf --ext py --lang python
 ```
-Produced PDF file: [examples/example_highlight_py.pdf](examples/example_highlight_py.pdf)
+--> Produced PDF file: [examples/example_highlight_py.pdf](examples/example_highlight_py.pdf)
 
 Remember to replace example with your actual folder name and adapt the file extensions and languages as needed.
