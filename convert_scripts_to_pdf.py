@@ -1,10 +1,11 @@
 import os
 from fpdf import FPDF
-import sys
+import argparse
 
-def convert_do_to_pdf(do_file_path, pdf):
+
+def convert_scripts_to_pdf(do_file_path, pdf, encoding="utf-8"):
     # Read the contents of the .do file
-    with open(do_file_path, 'r', encoding="latin1") as do_file:
+    with open(do_file_path, 'r', encoding=encoding) as do_file:
         do_content = do_file.read()
 
     # Add a new page with the .do file title
@@ -18,35 +19,32 @@ def convert_do_to_pdf(do_file_path, pdf):
     pdf.ln()
 
 
-def process_folder(folder_path, output_pdf_path):
+def process_folder(folder_path, output_pdf_path, extension='do'):
     # Initialize the PDF document
     pdf = FPDF()
-    
+
     # Walk through the folder recursively
     for root, dirs, files in os.walk(folder_path):
         for file in files:
             # Check if the file is a Stata .do file
-            if file.endswith('.do'):
+            if file.endswith(f'.{extension}'):
                 do_file_path = os.path.join(root, file)
-                
+
                 # Convert the .do file to PDF
-                convert_do_to_pdf(do_file_path, pdf)
-                
+                convert_scripts_to_pdf(do_file_path, pdf, encoding="latin1")
+
                 print(f"Processed {do_file_path}")
-    
+
     # Save the PDF file
     pdf.output(output_pdf_path)
 
 
 if __name__ == '__main__':
-    # Check if the required arguments are provided
-    if len(sys.argv) < 3:
-        print("Usage: python script_name.py folder_path output_pdf_path")
-        sys.exit(1)
-
-    # Get the folder path and output PDF path from command-line arguments
-    folder_path = sys.argv[1]
-    output_pdf_path = sys.argv[2]
+    parser = argparse.ArgumentParser(description='Convert scripts to PDF')
+    parser.add_argument('folder_path', type=str, help='Path to the folder containing scripts')
+    parser.add_argument('output_pdf_path', type=str, help='Path to the output PDF file')
+    parser.add_argument('--ext', type=str, default='py', help='File extension to search for (default is "py")')
+    args = parser.parse_args()
 
     # Call the function to process the folder
-    process_folder(folder_path, output_pdf_path)
+    process_folder(args.folder_path, args.output_pdf_path, extension=args.ext)
