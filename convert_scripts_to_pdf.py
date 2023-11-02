@@ -37,6 +37,7 @@ def process_folder(folder_path, output_pdf_path, extension='do'):
 
     # Save the PDF file
     pdf.output(output_pdf_path)
+    print(f"output saved to {output_pdf_path}")
 
 
 if __name__ == '__main__':

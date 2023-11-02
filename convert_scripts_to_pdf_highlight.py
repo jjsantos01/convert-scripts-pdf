@@ -46,6 +46,7 @@ def merge_pdfs(input_pdf_paths, output_pdf_path):
     # Save the merged PDF to the output path
     merger.write(output_pdf_path)
     merger.close()
+    print(f"output saved to {output_pdf_path}")
 
     for file in input_pdf_paths:
         file_path = Path(file)
