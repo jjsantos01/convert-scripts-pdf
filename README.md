@@ -78,3 +78,14 @@ python convert_scripts_to_pdf_highlight.py . examples/example_highlight_py.pdf -
 --> Produced PDF file: [examples/example_highlight_py.pdf](examples/example_highlight_py.pdf)
 
 Remember to replace example with your actual folder name and adapt the file extensions and languages as needed.
+
+## Running with Docker
+
+### Without Highlighting:
+To run the script in a Docker container, follow these steps:
+1. Clone the repository
+2. Build the Docker image: `docker build -t script-to-pdf .`
+3. Run the Docker image:
+```bash
+docker run --rm -v $(pwd)/examples:/app/examples script-to-pdf examples examples/example_r.pdf --ext r
+```
