@@ -5,11 +5,13 @@ FROM python:3.8
 WORKDIR /app
 
 # Copy the current directory contents into the container at /usr/src/app
-COPY requirements.txt .
-COPY convert_scripts_to_pdf.py .
+RUN apt-get update
+RUN apt-get -y install wkhtmltopdf
 
 # Install any needed packages specified in requirements.txt
+COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-# Run convert_scripts_to_pdf.py when the container launches
-ENTRYPOINT ["python", "./convert_scripts_to_pdf.py"]
+# copy files
+COPY convert_scripts_to_pdf.py .
+COPY convert_scripts_to_pdf_highlight.py .
