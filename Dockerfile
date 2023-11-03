@@ -11,7 +11,3 @@ RUN apt-get -y install wkhtmltopdf
 # Install any needed packages specified in requirements.txt
 COPY requirements.txt .
 RUN pip install -r requirements.txt
-
-# copy files
-COPY convert_scripts_to_pdf.py .
-COPY convert_scripts_to_pdf_highlight.py .

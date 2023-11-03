@@ -87,9 +87,9 @@ To run the script in a Docker container, follow these steps:
 3. Run the Docker image:
 *  Without Highlighting:
     ```bash
-    docker run --rm -v $(pwd)/examples:/app/examples script-to-pdf python convert_scripts_to_pdf.py examples examples/example_r.pdf --ext r
+    docker run --rm -v $(pwd):/app/ script-to-pdf python convert_scripts_to_pdf.py examples examples/example_r.pdf --ext r
     ```
 * With Highlighting:
   ```bash
-  docker run --rm -v $(pwd)/examples:/app/examples script-to-pdf python convert_scripts_to_pdf_highlight.py examples examples/example_highlight_r.pdf --ext r --lang r
+  docker run --rm -v $(pwd):/app/ script-to-pdf python convert_scripts_to_pdf_highlight.py examples examples/example_highlight_r.pdf --ext r --lang r
   ```
